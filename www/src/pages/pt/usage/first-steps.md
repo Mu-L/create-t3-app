@@ -9,7 +9,7 @@ Você acabou de criar um novo aplicativo T3 e está pronto para começar. Aqui e
 
 ## Banco de dados
 
-Se o seu aplicativo incluir o Prisma, certifique-se de executar `npx prisma db push` no diretório raiz do seu aplicativo. Este comando sincronizará seu esquema Prisma com seu banco de dados e gerará os tipos TypeScript para o Prisma Client com base em seu schema. Observe que você precisa reiniciar o servidor TypeScript depois de fazer isso para que ele possa detectar os novos tipos gerados.
+Se o seu aplicativo incluir o Prisma, certifique-se de executar `npx prisma db push` no diretório raiz do seu aplicativo. Este comando sincronizará o schema do Prisma com seu banco de dados e gerará as tipagens do TypeScript para o Prisma Client com base em seu schema. Observe que você precisa reiniciar o servidor TypeScript depois de fazer isso para que ele possa detectar os novos tipos gerados.
 
 ## Autenticação
 
@@ -31,6 +31,6 @@ Agora você deve conseguir fazer login.
 
 ## Próximos passos
 
-- Se sua aplicação incluir tRPC, confira `src/pages/index.tsx` e `src/server/trpc/router/example.ts` para ver como funcionam as consultas tRPC.
+- Se sua aplicação incluir tRPC, confira `src/pages/index.tsx` e `src/server/trpc/router/post.ts` para ver como funcionam as consultas tRPC.
 - Dê uma olhada na documentação `create-t3-app`, bem como nos documentos dos pacotes que sua aplicação inclui.
 - Junte-se ao nosso [Discord](https://t3.gg/discord) e dê-nos uma estrela no [GitHub](https://github.com/t3-oss/create-t3-app)! :)

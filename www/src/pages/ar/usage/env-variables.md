@@ -22,16 +22,24 @@ dir: rtl
 
 ## ملف schema.mjs
 
-هذا هو الملف الذي ستعمل علية. يَحتوي على مُخططين ، أحدهما environment variables من جانب الخادم والآخر من جانب العميل ".
+هذا هو الملف الذي ستعمل علية. يَحتوي على مُخططين ، أحدهما environment variables من جانب الخادم والآخر من جانب العميل بالإضافة إلى Object الـ "clientEnv".
 
 ```ts:env/schema.mjs
 export const serverSchema = z.object({
   // DATABASE_URL: z.string().url(),
 });
 
+export const serverEnv = {
+  // DATABASE_URL: process.env.DATABASE_URL,
+};
+
 export const clientSchema = z.object({
   // NEXT_PUBLIC_WS_KEY: z.string(),
 });
+
+export const clientEnv = {
+  // NEXT_PUBLIC_WS_KEY: process.env.NEXT_PUBLIC_WS_KEY,
+};
 ```
 
 ### الـ Server Schema
@@ -42,6 +50,8 @@ export const clientSchema = z.object({
 ### الـ Client Schema
 
 أنشئ الـ client-side environment variables هنا، حتى تجعلهم متاحيت للـ client أضف `NEXT_PUBLIC` قبل الاسم.
+
+### الـ clientEnv Object
 
 هُنا حيثُ تقوم بعمل Destruct لـ `process.env`
 تحتاج Zod الي Object لتكون قادرة على تصحيح المُدخلات وبسبب طريقة عمل Next.js فلن نستطيع فعل هذا تلقائيا لذلك يجب أن تتم هذة العملية يدويا، لا تقلق فـ Typescript تقوم بتحذيرك إذا ارتكبت خطاّ.
@@ -61,10 +71,10 @@ const validated = schema.parse(process.env);
 
 ## إستخدام الـ Environment Variables
 
-إذا أردت إستخدام الـ env vars فيمكنك إستيراد` env/client.mjs` و `env/server.mjs` في المكان الذي تريد
+إذا أردت إستخدام الـ env vars فيمكنك إستيراد` env.mjs` واستعمالهم طبيعيا. إذا إستيرادت الملف في Client وحولت استعمال قيم الserver-side، ستنذر بوجود خطأ في run-time.
 
 ```ts:pages/api/hello.ts
-import { env } from "../../env/server.mjs";
+import { env } from "../../env.mjs";
 
 // `env` is fully typesafe and provides autocompletion
 const dbUrl = env.DATABASE_URL;
@@ -99,9 +109,12 @@ export const serverSchema = z.object({
   // ...
   TWITTER_API_TOKEN: z.string(),
 });
-```
 
-**ملحوطة:** النص الفارغ تتعامل معة zod علي أنه نص صحيح، إذا ما اردت ان تُغيّر هذا الاسلوب فإستخدم `z.string().min(1)`
+export const serverEnv = {
+  // ...
+  TWITTER_API_TOKEN: process.env.TWITTER_API_TOKEN,
+};
+```
 
 **ملحوطة:** أضف إسم المُتغيير `TWITTER_API_TOKEN` في example.env ولكن لا تُضف الـ token
 

@@ -53,6 +53,7 @@ Sometimes you're building a project where you just want the UI to look decent ou
 
 - [Chakra UI](https://chakra-ui.com)
 - [Mantine](https://mantine.dev)
+- [@shadcn/ui](https://ui.shadcn.com/)
 
 ### Class Variance Authority
 
@@ -147,10 +148,11 @@ Need analytics? Plausible is one of the quickest ways to get them. Super minimal
 
 ### Umami
 
-Umami is an open-sourced, self-hostable, simple, fast, privacy-focused alternative to Google Analytics. You can deploy it really easily to Vercel, Railway, etc. with PlanetScale as your database.
+Umami is an open-sourced, self-hostable, simple, fast, privacy-focused alternative to Google Analytics. You can deploy it really easily to Vercel, Railway, etc. with PlanetScale as your database or you can also use its cloud version.
 
 - [Umami Homepage](https://umami.is/)
 - [Umami GitHub](https://github.com/umami-software/umami)
+- [Umami Cloud](https://cloud.umami.is/)
 
 ## Other
 

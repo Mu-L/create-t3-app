@@ -13,7 +13,7 @@ export const OPEN_GRAPH = {
 };
 
 // This is the type of the frontmatter you put in the docs markdown files.
-export type Frontmatter = {
+export interface Frontmatter {
   title: string;
   description: string;
   layout: string;
@@ -22,17 +22,20 @@ export type Frontmatter = {
   ogLocale?: string;
   lang?: KnownLanguageCode;
   isMdx?: boolean;
-};
+}
 
 export const KNOWN_LANGUAGES = {
   // Add more languages here
   // sv: "Svenska",
   ar: "العربية",
   en: "English",
+  es: "Español",
   fr: "Français",
+  ja: "日本語",
   pt: "Português",
   ru: "Русский",
   no: "Norsk",
+  pl: "Polski",
   "zh-hans": "简体中文",
 } as const;
 export type KnownLanguageCode = keyof typeof KNOWN_LANGUAGES;
@@ -48,18 +51,19 @@ export const ALGOLIA = {
   apiKey: "892c4647b96fe1b3d0b7d8de1c5b5e40",
 };
 
-export type OuterHeaders = "Create T3 App" | "Usage" | "Deployment";
+export type OuterHeaders = "Create T3 App" | "Deployment" | "Usage";
 
-export type SidebarItem<TCode extends KnownLanguageCode = KnownLanguageCode> = {
+export interface SidebarItem<
+  TCode extends KnownLanguageCode = KnownLanguageCode,
+> {
   text: string;
   link: `${TCode}/${string}`;
-};
+}
 
 export type SidebarItemLink = SidebarItem["link"];
 
 export type Sidebar = {
   [TCode in KnownLanguageCode]: {
-    // eslint-disable-next-line no-unused-vars
     [THeader in OuterHeaders]?: SidebarItem<TCode>[];
   };
 };
@@ -112,6 +116,7 @@ export const SIDEBAR: Sidebar = {
       { text: "Folder Structure", link: "en/folder-structure" },
       { text: "FAQ", link: "en/faq" },
       { text: "T3 Collection", link: "en/t3-collection" },
+      { text: "Examples", link: "en/examples" },
       { text: "Other Recommendations", link: "en/other-recs" },
     ],
     Usage: [
@@ -119,6 +124,7 @@ export const SIDEBAR: Sidebar = {
       { text: "Next.js", link: "en/usage/next-js" },
       { text: "TypeScript", link: "en/usage/typescript" },
       { text: "tRPC", link: "en/usage/trpc" },
+      { text: "Drizzle", link: "en/usage/drizzle" },
       { text: "Prisma", link: "en/usage/prisma" },
       { text: "NextAuth.js", link: "en/usage/next-auth" },
       {
@@ -133,6 +139,90 @@ export const SIDEBAR: Sidebar = {
       { text: "Docker", link: "en/deployment/docker" },
     ],
   },
+  es: {
+    "Create T3 App": [
+      { text: "Introducción", link: "es/introduction" },
+      { text: "¿Por qué CT3A?", link: "es/why" },
+      { text: "Instalación", link: "es/installation" },
+      { text: "Estructura de Carpetas", link: "es/folder-structure" },
+      { text: "Preguntas Frecuentes", link: "es/faq" },
+      { text: "Colección T3", link: "es/t3-collection" },
+      { text: "Otras Recomendaciones", link: "es/other-recs" },
+    ],
+    Usage: [
+      { text: "Primeros Pasos", link: "es/usage/first-steps" },
+      { text: "Next.js", link: "es/usage/next-js" },
+      { text: "TypeScript", link: "es/usage/typescript" },
+      { text: "tRPC", link: "es/usage/trpc" },
+      { text: "Prisma", link: "es/usage/prisma" },
+      { text: "NextAuth.js", link: "es/usage/next-auth" },
+      { text: "Variables de Entorno", link: "es/usage/env-variables" },
+      { text: "Tailwind CSS", link: "es/usage/tailwind" },
+    ],
+    Deployment: [
+      { text: "Vercel", link: "es/deployment/vercel" },
+      { text: "Netlify", link: "es/deployment/netlify" },
+      { text: "Docker", link: "es/deployment/docker" },
+    ],
+  },
+  ja: {
+    "Create T3 App": [
+      { text: "イントロダクション", link: "ja/introduction" },
+      { text: "CT3A を選ぶ理由", link: "ja/why" },
+      { text: "インストール", link: "ja/installation" },
+      { text: "ファルダ構成", link: "ja/folder-structure" },
+      { text: "FAQ", link: "ja/faq" },
+      { text: "T3 コレクション", link: "ja/t3-collection" },
+      { text: "その他のオススメ", link: "ja/other-recs" },
+    ],
+    Usage: [
+      { text: "はじめの一歩", link: "ja/usage/first-steps" },
+      { text: "Next.js", link: "ja/usage/next-js" },
+      { text: "TypeScript", link: "ja/usage/typescript" },
+      { text: "tRPC", link: "ja/usage/trpc" },
+      { text: "Prisma", link: "ja/usage/prisma" },
+      { text: "NextAuth.js", link: "ja/usage/next-auth" },
+      {
+        text: "環境変数",
+        link: "ja/usage/env-variables",
+      },
+      { text: "Tailwind CSS", link: "ja/usage/tailwind" },
+    ],
+    Deployment: [
+      { text: "Vercel", link: "ja/deployment/vercel" },
+      { text: "Netlify", link: "ja/deployment/netlify" },
+      { text: "Docker", link: "ja/deployment/docker" },
+    ],
+  },
+  pl: {
+    "Create T3 App": [
+      { text: "Wstęp", link: "pl/introduction" },
+      { text: "Dlaczego CT3A?", link: "pl/why" },
+      { text: "Instalacja", link: "pl/installation" },
+      { text: "Struktura Projektu", link: "pl/folder-structure" },
+      { text: "FAQ", link: "pl/faq" },
+      { text: "Kolekcja T3", link: "pl/t3-collection" },
+      { text: "Inne Rekomendacje", link: "pl/other-recs" },
+    ],
+    Usage: [
+      { text: "Pierwsze Kroki", link: "pl/usage/first-steps" },
+      { text: "Next.js", link: "pl/usage/next-js" },
+      { text: "TypeScript", link: "pl/usage/typescript" },
+      { text: "tRPC", link: "pl/usage/trpc" },
+      { text: "Prisma", link: "pl/usage/prisma" },
+      { text: "NextAuth.js", link: "pl/usage/next-auth" },
+      {
+        text: "Zmienne Środowiskowe",
+        link: "pl/usage/env-variables",
+      },
+      { text: "Tailwind CSS", link: "pl/usage/tailwind" },
+    ],
+    Deployment: [
+      { text: "Vercel", link: "pl/deployment/vercel" },
+      { text: "Netlify", link: "pl/deployment/netlify" },
+      { text: "Docker", link: "pl/deployment/docker" },
+    ],
+  },
   fr: {
     "Create T3 App": [
       { text: "Introduction", link: "fr/introduction" },
@@ -141,6 +231,7 @@ export const SIDEBAR: Sidebar = {
       { text: "Structure des dossiers", link: "fr/folder-structure" },
       { text: "FAQ", link: "fr/faq" },
       { text: "Collection T3", link: "fr/t3-collection" },
+      { text: "Exemples", link: "fr/examples" },
       { text: "Autres recommandations", link: "fr/other-recs" },
     ],
     Usage: [
@@ -187,6 +278,7 @@ export const SIDEBAR: Sidebar = {
     ],
     Deployment: [
       { text: "Vercel", link: "pt/deployment/vercel" },
+      { text: "Netlify", link: "pt/deployment/netlify" },
       { text: "Docker", link: "pt/deployment/docker" },
     ],
   },
@@ -216,6 +308,7 @@ export const SIDEBAR: Sidebar = {
     Deployment: [
       { text: "Vercel", link: "ru/deployment/vercel" },
       { text: "Docker", link: "ru/deployment/docker" },
+      { text: "Netlify", link: "ru/deployment/netlify" },
     ],
   },
   no: {
@@ -243,6 +336,7 @@ export const SIDEBAR: Sidebar = {
     ],
     Deployment: [
       { text: "Vercel", link: "no/deployment/vercel" },
+      { text: "Netlify", link: "no/deployment/netlify" },
       { text: "Docker", link: "no/deployment/docker" },
     ],
   },
@@ -281,12 +375,27 @@ export const SIDEBAR_HEADER_MAP: Record<
   Exclude<KnownLanguageCode, "en">,
   Record<OuterHeaders, string>
 > = {
+  es: {
+    "Create T3 App": "Create T3 App",
+    Usage: "Uso",
+    Deployment: "Despliegue",
+  },
   // Translate the sidebar's "outer headers" here
   // sv: {
   //   "Create T3 App": "Create T3 App",
   //   Usage: "Användarguide",
   //   Deployment: "Deployment",
   // },
+  ja: {
+    "Create T3 App": "Create T3 App",
+    Usage: "使用法",
+    Deployment: "デプロイ",
+  },
+  pl: {
+    "Create T3 App": "Create T3 App",
+    Usage: "Korzystanie Z Narzędzia",
+    Deployment: "Deployment",
+  },
   ar: {
     "Create T3 App": "Create T3 App",
     Usage: "كيفية الإستخدام؟",

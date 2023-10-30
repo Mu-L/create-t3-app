@@ -7,7 +7,7 @@ lang: zh-hans
 
 我们意识到 `create-t3-app` 所包含的库或工具并不能解决每一个问题。虽然我们鼓励你用我们提供的这些工具来创建项目，但有的时候你还是会需要用到其他库。只有你自己才能了解你的项目真正需要什么，不过这里有一份我们自己经常推荐的库或工具的清单，你大可参考一下。
 
-这些推荐来自于 create-t3-app 的个人贡献者们，不应该被视为 create-t3-app 团队或这个开源软件的“官方”认可。_**请自行搜索，尤其是在使用付费服务之前**_。
+这些推荐来自于 Create T3 App 的个人贡献者们，不应该被视为 Create T3 App 团队或这个开源软件的“官方”认可。_**请自行搜索，尤其是在使用付费服务之前**_。
 
 ## 状态管理
 
@@ -53,6 +53,7 @@ _**编者注词**_: 状态管理库本身很棒，但经常没有必要使用。
 
 - [Chakra UI](https://chakra-ui.com)
 - [Mantine](https://mantine.dev)
+- [@shadcn/ui](https://ui.shadcn.com/)
 
 ### Class Variance Authority
 
@@ -94,7 +95,7 @@ Framer Motion 提供了一种简单、声明式的语法，从复杂的动画，
 Vercel 帮你解决了 web 应用部署的痛点，可以让你轻松通过 GitHub 仓库部署你的应用。我们部署在 Vercel 的服务已经扩展达到数十万用户，目前还没有任何问题。Vercel 基于 AWS，不过有更好的交互界面 :)
 
 - [Vercel 官网](https://vercel.com/)
-- [Create T3 App Vercel 部署指引](/en/deployment/vercel)
+- [Create T3 App Vercel 部署指引](/zh-hans/deployment/vercel)
 
 ### PlanetScale
 
@@ -147,10 +148,11 @@ Soketi 是一个支持自行部署的、简单快速的 Pusher 替代方案。�
 
 ### Umami
 
-Umami 是一个开源的、支持自行部署、简单快速、注重隐私的 Google Analytics 备选方案。你可以非常轻松地将它部署到 Vercel、 Railway 等，并选用 PlanetScale 作为其数据库。
+Umami 是一个开源的、支持自行部署、简单快速、注重隐私的 Google Analytics 备选方案。你可以使用 PlanetScale 作为数据库，轻松地将其部署到 Vercel、Railway 等平台上，也可以使用其云版本。
 
 - [Umami 官网](https://umami.is/)
 - [Umami GitHub](https://github.com/umami-software/umami)
+- [Umami Cloud](https://cloud.umami.is/)
 
 ## 其他
 

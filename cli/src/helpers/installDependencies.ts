@@ -1,27 +1,90 @@
 import chalk from "chalk";
-import { execa } from "execa";
-import ora from "ora";
-import { getUserPkgManager } from "~/utils/getUserPkgManager.js";
+import { execa, type StdioOption } from "execa";
+import ora, { type Ora } from "ora";
+
+import {
+  getUserPkgManager,
+  type PackageManager,
+} from "~/utils/getUserPkgManager.js";
 import { logger } from "~/utils/logger.js";
 
-type Options = {
-  projectDir: string;
+const execWithSpinner = async (
+  projectDir: string,
+  pkgManager: PackageManager,
+  options: {
+    args?: string[];
+    stdout?: StdioOption;
+    onDataHandle?: (spinner: Ora) => (data: Buffer) => void;
+  }
+) => {
+  const { onDataHandle, args = ["install"], stdout = "pipe" } = options;
+
+  const spinner = ora(`Running ${pkgManager} install...`).start();
+  const subprocess = execa(pkgManager, args, { cwd: projectDir, stdout });
+
+  await new Promise<void>((res, rej) => {
+    if (onDataHandle) {
+      subprocess.stdout?.on("data", onDataHandle(spinner));
+    }
+
+    void subprocess.on("error", (e) => rej(e));
+    void subprocess.on("close", () => res());
+  });
+
+  return spinner;
 };
 
-export const installDependencies = async ({ projectDir }: Options) => {
+const runInstallCommand = async (
+  pkgManager: PackageManager,
+  projectDir: string
+): Promise<Ora | null> => {
+  switch (pkgManager) {
+    // When using npm, inherit the stderr stream so that the progress bar is shown
+    case "npm":
+      await execa(pkgManager, ["install"], {
+        cwd: projectDir,
+        stderr: "inherit",
+      });
+
+      return null;
+    // When using yarn or pnpm, use the stdout stream and ora spinner to show the progress
+    case "pnpm":
+      return execWithSpinner(projectDir, pkgManager, {
+        onDataHandle: (spinner) => (data) => {
+          const text = data.toString();
+
+          if (text.includes("Progress")) {
+            spinner.text = text.includes("|")
+              ? text.split(" | ")[1] ?? ""
+              : text;
+          }
+        },
+      });
+    case "yarn":
+      return execWithSpinner(projectDir, pkgManager, {
+        onDataHandle: (spinner) => (data) => {
+          spinner.text = data.toString();
+        },
+      });
+    // When using bun, the stdout stream is ignored and the spinner is shown
+    case "bun":
+      return execWithSpinner(projectDir, pkgManager, { stdout: "ignore" });
+  }
+};
+
+export const installDependencies = async ({
+  projectDir,
+}: {
+  projectDir: string;
+}) => {
   logger.info("Installing dependencies...");
   const pkgManager = getUserPkgManager();
-  const spinner =
-    pkgManager === "yarn"
-      ? ora("Running yarn...\n").start()
-      : ora(`Running ${pkgManager} install...\n`).start();
 
-  // If the package manager is yarn, use yarn's default behavior to install dependencies
-  if (pkgManager === "yarn") {
-    await execa(pkgManager, [], { cwd: projectDir });
-  } else {
-    await execa(pkgManager, ["install"], { cwd: projectDir });
-  }
+  const installSpinner = await runInstallCommand(pkgManager, projectDir);
 
-  spinner.succeed(chalk.green("Successfully installed dependencies!\n"));
+  // If the spinner was used to show the progress, use succeed method on it
+  // If not, use the succeed on a new spinner
+  (installSpinner ?? ora()).succeed(
+    chalk.green("Successfully installed dependencies!\n")
+  );
 };

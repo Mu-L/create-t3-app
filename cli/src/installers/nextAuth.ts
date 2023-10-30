@@ -1,13 +1,22 @@
-import type { Installer } from "~/installers/index.js";
-import { AvailableDependencies } from "~/installers/dependencyVersionMap.js";
 import path from "path";
 import fs from "fs-extra";
+
 import { PKG_ROOT } from "~/consts.js";
+import { type AvailableDependencies } from "~/installers/dependencyVersionMap.js";
+import { type Installer } from "~/installers/index.js";
 import { addPackageDependency } from "~/utils/addPackageDependency.js";
 
-export const nextAuthInstaller: Installer = ({ projectDir, packages }) => {
+export const nextAuthInstaller: Installer = ({
+  projectDir,
+  packages,
+  appRouter,
+}) => {
+  const usingPrisma = packages?.prisma.inUse;
+  const usingDrizzle = packages?.drizzle.inUse;
+
   const deps: AvailableDependencies[] = ["next-auth"];
-  if (packages?.prisma.inUse) deps.push("@next-auth/prisma-adapter");
+  if (usingPrisma) deps.push("@next-auth/prisma-adapter");
+  if (usingDrizzle) deps.push("@auth/drizzle-adapter");
 
   addPackageDependency({
     projectDir,
@@ -17,23 +26,25 @@ export const nextAuthInstaller: Installer = ({ projectDir, packages }) => {
 
   const extrasDir = path.join(PKG_ROOT, "template/extras");
 
-  const apiHandlerSrc = path.join(
+  const apiHandlerFile = "src/pages/api/auth/[...nextauth].ts";
+  const routeHandlerFile = "src/app/api/auth/[...nextauth]/route.ts";
+  const srcToUse = appRouter ? routeHandlerFile : apiHandlerFile;
+
+  const apiHandlerSrc = path.join(extrasDir, srcToUse);
+  const apiHandlerDest = path.join(projectDir, srcToUse);
+
+  const authConfigSrc = path.join(
     extrasDir,
-    "src/pages/api/auth/[...nextauth]",
-    packages?.prisma.inUse ? "with-prisma.ts" : "base.ts",
+    "src/server",
+    appRouter ? "auth-app" : "auth-pages",
+    usingPrisma
+      ? "with-prisma.ts"
+      : usingDrizzle
+      ? "with-drizzle.ts"
+      : "base.ts"
   );
-  const apiHandlerDest = path.join(
-    projectDir,
-    "src/pages/api/auth/[...nextauth].ts",
-  );
-
-  const getServerAuthSessionSrc = path.join(extrasDir, "src/server/auth.ts");
-  const getServerAuthSessionDest = path.join(projectDir, "src/server/auth.ts");
-
-  const nextAuthDTSSrc = path.join(extrasDir, "src/types/next-auth.d.ts");
-  const nextAuthDTSDest = path.join(projectDir, "src/types/next-auth.d.ts");
+  const authConfigDest = path.join(projectDir, "src/server/auth.ts");
 
   fs.copySync(apiHandlerSrc, apiHandlerDest);
-  fs.copySync(getServerAuthSessionSrc, getServerAuthSessionDest);
-  fs.copySync(nextAuthDTSSrc, nextAuthDTSDest);
+  fs.copySync(authConfigSrc, authConfigDest);
 };

@@ -1,5 +1,333 @@
 # Changelog
 
+## 7.22.0
+
+### Minor Changes
+
+- [#1567](https://github.com/t3-oss/create-t3-app/pull/1567) [`e71bedd`](https://github.com/t3-oss/create-t3-app/commit/e71bedde0d6944fa7719a5f97cd27a1503156faa) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - feat: add app router option
+
+- [#1595](https://github.com/t3-oss/create-t3-app/pull/1595) [`d7824e0`](https://github.com/t3-oss/create-t3-app/commit/d7824e0e2523703662b731945229e2fae88708ae) Thanks [@c-ehrlich](https://github.com/c-ehrlich)! - show callout when scaffolding with app router
+
+## 7.21.0
+
+### Minor Changes
+
+- [#1584](https://github.com/t3-oss/create-t3-app/pull/1584) [`9614d84`](https://github.com/t3-oss/create-t3-app/commit/9614d8424d810278facf012fb99d1da51d2238e6) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - bump deps and add `emptyStringAsUndefined` option for `t3-env`
+
+## 7.20.2
+
+### Patch Changes
+
+- [#1564](https://github.com/t3-oss/create-t3-app/pull/1564) [`58ee08e`](https://github.com/t3-oss/create-t3-app/commit/58ee08e850d985b5ef1b7e5bf0cc164cfaff3f3f) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - fix: block drizzle apps when the example database url hasn't been changed yet
+
+## 7.20.1
+
+### Patch Changes
+
+- [#1561](https://github.com/t3-oss/create-t3-app/pull/1561) [`b8507dc`](https://github.com/t3-oss/create-t3-app/commit/b8507dc64ee91b8423de2ab6145cb3e7d8072528) Thanks [@Nsttt](https://github.com/Nsttt)! - Add packageManager field in package.json at app creation
+
+## 7.20.0
+
+### Minor Changes
+
+- [#1461](https://github.com/t3-oss/create-t3-app/pull/1461) [`8034db0`](https://github.com/t3-oss/create-t3-app/commit/8034db042b9ed12f5ba01c1f779c5ee77d78afc4) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - feat: add drizzle
+
+  This release adds a new option to use [`drizzle-orm`](https://orm.drizzle.team/docs/overview) as an alternative to Prisma.
+
+  To make the different ORM options as similar as possible, some minor changes has also been made to the Prisma installer:
+
+  - a new script `db:push` has been added and is included in both ORM options.
+  - the prisma client has been renamed to `db` in the trpc context - you now access your database client like
+    ```ts
+    examples: publicProcedure.query((opts) => {
+       // prisma
+       opts.ctx.db.example.findMany()
+       // drizzle
+       opts.ctx.db.query.example.findMany()
+    }),
+    ```
+
+  You cannot choose the two options in the same app.
+
+### Patch Changes
+
+- [#1461](https://github.com/t3-oss/create-t3-app/pull/1461) [`8034db0`](https://github.com/t3-oss/create-t3-app/commit/8034db042b9ed12f5ba01c1f779c5ee77d78afc4) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - refactor: swap inquirer for clack
+
+## 7.19.0
+
+### Minor Changes
+
+- [#1375](https://github.com/t3-oss/create-t3-app/pull/1375) [`d781f08`](https://github.com/t3-oss/create-t3-app/commit/d781f0861ba05aee6b3d460fc53e126868409fb5) Thanks [@Zeko369](https://github.com/Zeko369)! - feat: detect and support usage of Bun as package manager
+
+## 7.18.0
+
+### Minor Changes
+
+- [#1532](https://github.com/t3-oss/create-t3-app/pull/1532) [`941a0fc`](https://github.com/t3-oss/create-t3-app/commit/941a0fc79bcfb24c894525c93aab87c2860b2ad4) Thanks [@spicybackend](https://github.com/spicybackend)! - chore(deps): upgrade Prisma to v5.1.1, bump patch versions of other dependencies
+
+- [#1507](https://github.com/t3-oss/create-t3-app/pull/1507) [`fe5755c`](https://github.com/t3-oss/create-t3-app/commit/fe5755c2d575ce27e8e9c86e6fc79e7903af0390) Thanks [@LevinUncu](https://github.com/LevinUncu)! - If the project is not in a Git repo, the next steps will show git init instead of git commit -m "initial commit".
+
+## 7.17.0
+
+### Minor Changes
+
+- [#1523](https://github.com/t3-oss/create-t3-app/pull/1523) [`c441a9e`](https://github.com/t3-oss/create-t3-app/commit/c441a9ecfaeb61866a76379712b297fc6c2c36b3) Thanks [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)! - reduced stylistic linting
+
+## 7.16.0
+
+### Minor Changes
+
+- [#1476](https://github.com/t3-oss/create-t3-app/pull/1476) [`f3fd50f`](https://github.com/t3-oss/create-t3-app/commit/f3fd50fbd5dfd705507b1a2b53e8e6fd39b2dadb) Thanks [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)! - Upgraded typescript-eslint to v6, with reworked ESLint configurations
+
+- [#1508](https://github.com/t3-oss/create-t3-app/pull/1508) [`e9c862e`](https://github.com/t3-oss/create-t3-app/commit/e9c862e7e114214139f05572d62af45d87d3fc1c) Thanks [@Sn0wye](https://github.com/Sn0wye)! - chore(deps): bump prisma to v5.0.0
+
+## 7.15.0
+
+### Minor Changes
+
+- [#1484](https://github.com/t3-oss/create-t3-app/pull/1484) [`23a9d60`](https://github.com/t3-oss/create-t3-app/commit/23a9d60cd013c40d76ab96d0340425e1e3d8efa2) Thanks [@c-ehrlich](https://github.com/c-ehrlich)! - reminder to git commit after creating an application with the CLI
+
+### Patch Changes
+
+- [#1493](https://github.com/t3-oss/create-t3-app/pull/1493) [`a230d9f`](https://github.com/t3-oss/create-t3-app/commit/a230d9f7bb3a78669f2003ae9084c868f06639b7) Thanks [@dcottr](https://github.com/dcottr)! - Remove trailing newlines in generated app that aren't allowed by the generated prettier config
+
+## 7.14.1
+
+### Patch Changes
+
+- [#1479](https://github.com/t3-oss/create-t3-app/pull/1479) [`bb7324c`](https://github.com/t3-oss/create-t3-app/commit/bb7324c9503995949c61c0a5abe736c38f07b815) Thanks [@c-ehrlich](https://github.com/c-ehrlich)! - use custom error class for IsTTYError
+
+## 7.14.0
+
+### Minor Changes
+
+- [#1466](https://github.com/t3-oss/create-t3-app/pull/1466) [`e8b68d9`](https://github.com/t3-oss/create-t3-app/commit/e8b68d92af093361bf73eed7eacd7ed6848500c3) Thanks [@brunoeduardodev](https://github.com/brunoeduardodev)! - Ignore trailing slashes when prompting the app name.
+
+## 7.13.2
+
+### Patch Changes
+
+- [#1469](https://github.com/t3-oss/create-t3-app/pull/1469) [`547f504`](https://github.com/t3-oss/create-t3-app/commit/547f504b91c3da9b6419ea7f9f43d03e6c243839) Thanks [@ericshively](https://github.com/ericshively)! - Replace React.FC with basic function syntax
+
+## 7.13.1
+
+### Patch Changes
+
+- [#1436](https://github.com/t3-oss/create-t3-app/pull/1436) [`b0facee`](https://github.com/t3-oss/create-t3-app/commit/b0facee2736e3e0afc909c3d80b38499174fd84c) Thanks [@harrismcc](https://github.com/harrismcc)! - When using NextAuth but not Prisma, the session user's id is now set to `token.sub` instead of `user.id` because `user` is undefined when not using database sessions.
+
+- [#1433](https://github.com/t3-oss/create-t3-app/pull/1433) [`7fbe991`](https://github.com/t3-oss/create-t3-app/commit/7fbe991175f4da02184e0e43a5439515d1ef7439) Thanks [@FinnDore](https://github.com/FinnDore)! - fix: SKIP_ENV_VALIDATION not skipping env validation
+
+## 7.13.0
+
+### Minor Changes
+
+- [#1397](https://github.com/t3-oss/create-t3-app/pull/1397) [`be9a834`](https://github.com/t3-oss/create-t3-app/commit/be9a83483339f8bb799be7a3d69cf67e64882daf) Thanks [@brieyla1](https://github.com/brieyla1)! - feat: Added JsonProtocol as the Default Prisma Engine for Serverless speedups
+
+  modified:
+
+      - cli/template/extras/prisma/schema/base.prisma
+
+      - cli/template/extras/prisma/schema/with-auth.prisma
+
+  Description: This pull request proposes the enabling of the JsonProtocol by default. The rationale for this change is based on the performance improvements provided by the JsonProtocol without compromising stability, even though it is still a preview feature. Empirical evidence gathered from large-scale projects, with 100+ Prisma calls, demonstrates the significant time reductions enabled by this optimization, particularly in serverless environments such as Vercel. Another point worth adding is that most projects using nextJS create-t3-app will be deployed on serverless platforms such as vercel, where the real impact is.
+
+## 7.12.3
+
+### Patch Changes
+
+- [#1404](https://github.com/t3-oss/create-t3-app/pull/1404) [`48dd89a`](https://github.com/t3-oss/create-t3-app/commit/48dd89adb33ff9625dba82f6e149cf111f02e488) Thanks [@michalbundyra](https://github.com/michalbundyra)! - update nextjs dependency to ^13.4.1
+
+## 7.12.2
+
+### Patch Changes
+
+- [#1401](https://github.com/t3-oss/create-t3-app/pull/1401) [`b1a35dd`](https://github.com/t3-oss/create-t3-app/commit/b1a35dd66c5c9abab13daebfee93c08b67317272) Thanks [@c-ehrlich](https://github.com/c-ehrlich)! - temporarily pin next to fix vercel build error
+
+## 7.12.1
+
+### Patch Changes
+
+- [#1377](https://github.com/t3-oss/create-t3-app/pull/1377) [`00018ff`](https://github.com/t3-oss/create-t3-app/commit/00018ff0cbe5904f0bb37b8cb0a64814ca5f9410) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - move env validation logic out to a separate package
+
+- [#1385](https://github.com/t3-oss/create-t3-app/pull/1385) [`ac12abb`](https://github.com/t3-oss/create-t3-app/commit/ac12abb92a77d251b2c4bc72caceb422ab4ca706) Thanks [@iAverages](https://github.com/iAverages)! - Fixed issue with creating git repository with git versions below 2.28
+  Fixed bug with check to use --inital-branch set in git v2.28
+
+## 7.12.0
+
+### Minor Changes
+
+- [#1370](https://github.com/t3-oss/create-t3-app/pull/1370) [`18bc6a7`](https://github.com/t3-oss/create-t3-app/commit/18bc6a73a77b0b48191792ddfd0c296b58cc8221) Thanks [@chungweileong94](https://github.com/chungweileong94)! - Enforce `NEXT_PUBLIC_` env key on client
+
+## 7.11.0
+
+### Minor Changes
+
+- [#1358](https://github.com/t3-oss/create-t3-app/pull/1358) [`1a8a97e`](https://github.com/t3-oss/create-t3-app/commit/1a8a97e42b8991596fc70e50dd6870c987a59075) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - improve boolean coercion of `SKIP_ENV_VALIDATION` environment variable
+
+  If defined, "0" and "false" are now considered falsey values, all other values are considered truthy.
+
+### Patch Changes
+
+- [#1352](https://github.com/t3-oss/create-t3-app/pull/1352) [`c48b38f`](https://github.com/t3-oss/create-t3-app/commit/c48b38f522b81097e2f0e883ede053dbac620c12) Thanks [@Tungetyt](https://github.com/Tungetyt)! - refactor: make destructuring consistent
+
+## 7.10.3
+
+### Patch Changes
+
+- [#1330](https://github.com/t3-oss/create-t3-app/pull/1330) [`85997e0`](https://github.com/t3-oss/create-t3-app/commit/85997e0cc26a2ae6fbcd08458734bd6335ba467a) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - fix: create a new object for the session callback
+
+## 7.10.2
+
+### Patch Changes
+
+- [#1329](https://github.com/t3-oss/create-t3-app/pull/1329) [`5429989`](https://github.com/t3-oss/create-t3-app/commit/54299895517d3c406637efec8f0512cf1ba2da5a) Thanks [@c-ehrlich](https://github.com/c-ehrlich)! - temporarily pin next-auth version
+
+- [#1321](https://github.com/t3-oss/create-t3-app/pull/1321) [`7fcb41c`](https://github.com/t3-oss/create-t3-app/commit/7fcb41c95d24567040b72409a576d8c694f910a1) Thanks [@JingLi1998](https://github.com/JingLi1998)! - Update the type for global prisma instance
+
+## 7.10.1
+
+### Patch Changes
+
+- [#1312](https://github.com/t3-oss/create-t3-app/pull/1312) [`2fb3a51`](https://github.com/t3-oss/create-t3-app/commit/2fb3a51b8b91cf2eb992a3af49ff52588f1e9c95) Thanks [@FinnDore](https://github.com/FinnDore)! - feat: bumped tailwind from 3.2.7 -> 3.3.0
+
+## 7.10.0
+
+### Minor Changes
+
+- [#1295](https://github.com/t3-oss/create-t3-app/pull/1295) [`d0a8143`](https://github.com/t3-oss/create-t3-app/commit/d0a8143587c935819790521533e7cfa0862d300c) Thanks [@iAverages](https://github.com/iAverages)! - Replace Git Bash check with Mintty check
+
+### Patch Changes
+
+- [#1304](https://github.com/t3-oss/create-t3-app/pull/1304) [`2cb41e6`](https://github.com/t3-oss/create-t3-app/commit/2cb41e676f01d4e8bfb8c7fc41bf0d5c4a1c0689) Thanks [@PiotrekPKP](https://github.com/PiotrekPKP)! - fix: replace trpc links
+
+## 7.9.0
+
+### Minor Changes
+
+- [#1284](https://github.com/t3-oss/create-t3-app/pull/1284) [`a2af1a2`](https://github.com/t3-oss/create-t3-app/commit/a2af1a2b7d4fd3005f8efe0e297b871d6b1747ff) Thanks [@michalbundyra](https://github.com/michalbundyra)! - chore: bump typescript - 5.0.2
+
+## 7.8.0
+
+### Minor Changes
+
+- [#1273](https://github.com/t3-oss/create-t3-app/pull/1273) [`10a5e0b`](https://github.com/t3-oss/create-t3-app/commit/10a5e0b2fe91b887526960515c6422791a77c724) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - feat: add errorformatter for zod errors
+
+### Patch Changes
+
+- [#1263](https://github.com/t3-oss/create-t3-app/pull/1263) [`8dc6e33`](https://github.com/t3-oss/create-t3-app/commit/8dc6e33ea149851de97f84e8d8388accdd5547d9) Thanks [@mkreuzmayr](https://github.com/mkreuzmayr)! - search for tsconfig relative to eslintrc
+
+- [#1279](https://github.com/t3-oss/create-t3-app/pull/1279) [`ae5cd40`](https://github.com/t3-oss/create-t3-app/commit/ae5cd405c9d5bb672e3971c496d437a7a05b3f8f) Thanks [@arielconti10](https://github.com/arielconti10)! - fix: remove //@ts-check comment in next.config
+
+## 7.7.0
+
+### Minor Changes
+
+- [#1268](https://github.com/t3-oss/create-t3-app/pull/1268) [`db394ed`](https://github.com/t3-oss/create-t3-app/commit/db394edf396288dd754f5743ae2fe26a39c70ef5) Thanks [@c-ehrlich](https://github.com/c-ehrlich)! - ignore unused vars that begin with underscore
+
+## 7.6.0
+
+### Minor Changes
+
+- [#1255](https://github.com/t3-oss/create-t3-app/pull/1255) [`601cbb2`](https://github.com/t3-oss/create-t3-app/commit/601cbb23075cd33170c5b3ea2b1b0dbb0f2d5716) Thanks [@justasam](https://github.com/justasam)! - Add import alias validation
+
+## 7.5.9
+
+### Patch Changes
+
+- [#1252](https://github.com/t3-oss/create-t3-app/pull/1252) [`d8be181`](https://github.com/t3-oss/create-t3-app/commit/d8be181fd71dafba8c4c1358fea38b70bca8171a) Thanks [@ggrochow](https://github.com/ggrochow)! - Rename \_eslint.cjs before intializing git repo to ensure .eslint.cjs is added by default
+
+## 7.5.8
+
+### Patch Changes
+
+- [#1249](https://github.com/t3-oss/create-t3-app/pull/1249) [`2432d76`](https://github.com/t3-oss/create-t3-app/commit/2432d76acb337e215743e712d12969b141b22879) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - chore: bump nextjs
+
+## 7.5.7
+
+### Patch Changes
+
+- [#1232](https://github.com/t3-oss/create-t3-app/pull/1232) [`9c82f86`](https://github.com/t3-oss/create-t3-app/commit/9c82f862f5f5227c48e355a8fc31f83d88b0baeb) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - fix: bind configs to variables before exporting to make sure typeerrors are reported
+
+## 7.5.6
+
+### Patch Changes
+
+- [#1222](https://github.com/t3-oss/create-t3-app/pull/1222) [`7baa339`](https://github.com/t3-oss/create-t3-app/commit/7baa339b36b40760443083e0a378d8fe04dddb40) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - fix: detect and handle git bash environment
+
+## 7.5.5
+
+### Patch Changes
+
+- [#1218](https://github.com/t3-oss/create-t3-app/pull/1218) [`4f8d41a`](https://github.com/t3-oss/create-t3-app/commit/4f8d41ae2f41bef197cab13a332034e0ddffc955) Thanks [@bai](https://github.com/bai)! - feat: change eslint config to use `.cjs` format and typecheck it
+
+- [#1217](https://github.com/t3-oss/create-t3-app/pull/1217) [`55c87af`](https://github.com/t3-oss/create-t3-app/commit/55c87af37f64fbf778a5091b9cca75f9c9546468) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - fix: add autofix to eslint type rule
+
+## 7.5.4
+
+### Patch Changes
+
+- [#1191](https://github.com/t3-oss/create-t3-app/pull/1191) [`aabb9a4`](https://github.com/t3-oss/create-t3-app/commit/aabb9a41aa8acce4b3b02e2341b83cd78b802924) Thanks [@bai](https://github.com/bai)! - Use ~/\* import alias
+
+## 7.5.3
+
+### Patch Changes
+
+- [#1213](https://github.com/t3-oss/create-t3-app/pull/1213) [`ab3c7cb`](https://github.com/t3-oss/create-t3-app/commit/ab3c7cb4d4e78ab646a645bc28b4fe3496ba7831) Thanks [@michalbundyra](https://github.com/michalbundyra)! - fix: update comment regarding schema definition of env vars
+
+## 7.5.2
+
+### Patch Changes
+
+- [#1189](https://github.com/t3-oss/create-t3-app/pull/1189) [`bf12635`](https://github.com/t3-oss/create-t3-app/commit/bf1263576866116a904f3d1fa741c5496a535cb9) Thanks [@p13lgst](https://github.com/p13lgst)! - fix: remove ts-ignores on env.mjs
+
+## 7.5.1
+
+### Patch Changes
+
+- [#1187](https://github.com/t3-oss/create-t3-app/pull/1187) [`e111fb5`](https://github.com/t3-oss/create-t3-app/commit/e111fb5cb816de9b2d87bdf4ffcf84f446fd2023) Thanks [@c-ehrlich](https://github.com/c-ehrlich)! - remove old env files
+
+## 7.5.0
+
+### Minor Changes
+
+- [#1092](https://github.com/t3-oss/create-t3-app/pull/1092) [`aa44574`](https://github.com/t3-oss/create-t3-app/commit/aa44574680bf380cf4cf7f255fb547e5d9ced7d7) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - single env file
+
+### Patch Changes
+
+- [#1171](https://github.com/t3-oss/create-t3-app/pull/1171) [`efe8b7f`](https://github.com/t3-oss/create-t3-app/commit/efe8b7f54cf0fe5448dc52118745668ae4913547) Thanks [@esotuvaka](https://github.com/esotuvaka)! - fix: swap `@ts-check` comments to `checkJs: true` in scaffolded app's tsconfig
+
+## 7.4.1
+
+### Patch Changes
+
+- [#1155](https://github.com/t3-oss/create-t3-app/pull/1155) [`90955a5`](https://github.com/t3-oss/create-t3-app/commit/90955a50390eee8a23e1c1b35e10c860e4341fed) Thanks [@christopher-kapic](https://github.com/christopher-kapic)! - Change unstable_getServerSession to match the updated getServerSession from next-auth (introduced in next-auth 4.19.0)
+
+## 7.4.0
+
+### Minor Changes
+
+- [#1136](https://github.com/t3-oss/create-t3-app/pull/1136) [`715f6e8`](https://github.com/t3-oss/create-t3-app/commit/715f6e8e795685c054145149acff427a1b46172f) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - feat: colocate auth config/dts/session-getter into a single file
+
+- [#1134](https://github.com/t3-oss/create-t3-app/pull/1134) [`4cb2e4e`](https://github.com/t3-oss/create-t3-app/commit/4cb2e4e5020f93636889499bf71029ce7fcb5fce) Thanks [@PiotrekPKP](https://github.com/PiotrekPKP)! - feat: added package installation progress
+
+### Patch Changes
+
+- [#1131](https://github.com/t3-oss/create-t3-app/pull/1131) [`ab0790e`](https://github.com/t3-oss/create-t3-app/commit/ab0790e95194291cab65dee458982a2b637a4d15) Thanks [@bastibuck](https://github.com/bastibuck)! - fix: fix types of serverEnv and clientEnv
+
+- [#1140](https://github.com/t3-oss/create-t3-app/pull/1140) [`fc445bf`](https://github.com/t3-oss/create-t3-app/commit/fc445bfaa72e2de2880fb286cee71ff2b26a72a6) Thanks [@Zamiell](https://github.com/Zamiell)! - chore: add descriptive comments and format .env prettier
+
+## 7.3.2
+
+### Patch Changes
+
+- [#1097](https://github.com/t3-oss/create-t3-app/pull/1097) [`2ed36cd`](https://github.com/t3-oss/create-t3-app/commit/2ed36cd624cba2032ba70c465cd47c49a962bb0d) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - chore: bump nextjs and add a note about appDir+i18n being incompat
+
+## 7.3.1
+
+### Patch Changes
+
+- [#1084](https://github.com/t3-oss/create-t3-app/pull/1084) [`7490a34`](https://github.com/t3-oss/create-t3-app/commit/7490a34a3f46d8e912f996843d27ae5933f26164) Thanks [@c-ehrlich](https://github.com/c-ehrlich)! - fix: undo env changes
+
 ## 7.3.0
 
 ### Minor Changes

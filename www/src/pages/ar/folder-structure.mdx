@@ -4,10 +4,11 @@ description: بنية مجلد T3 App
 layout: ../../layouts/docs.astro
 lang: ar
 dir: rtl
+isMdx: true
 ---
 
-import Form from "../../components/docs/folderStructureForm.astro";
 import Diagram from "../../components/docs/folderStructureDiagram.astro";
+import Form from "../../components/docs/folderStructureForm.astro";
 
 اختار أدواتك لترى بنية المجلد عند إنشاء تطبيقك بواسطة تلك ألاختيارات. بالأسفل ستجد وصف عن غرض كلاً منهم.
 
@@ -66,7 +67,7 @@ import Diagram from "../../components/docs/folderStructureDiagram.astro";
 
 ### `src/server/auth.ts`
 
-يحتوي على الوظائف الخادمة (utlities) التي تقوم بالتوثيق مثل استرداد جلسة المستخدم (user session) من جانب السيرفر. اقرأ [NextAuth.js](https://create.t3.gg/ar/usage/next-auth#usage-with-trpc) للمزيد من المعلومات.
+يحتوي على الوظائف الخادمة (utilities) التي تقوم بالتوثيق مثل استرداد جلسة المستخدم (user session) من جانب السيرفر. اقرأ [NextAuth.js](https://create.t3.gg/ar/usage/next-auth#usage-with-trpc) للمزيد من المعلومات.
 
 </div>
 <div data-components="prisma">
@@ -112,16 +113,16 @@ import Diagram from "../../components/docs/folderStructureDiagram.astro";
 
 إن ملف `trpc.ts` الملف الرئيسي لإعدادات back-end في tRPC. هنا:
 
-1. يحدد المحتوى المستخدم في طلبات tRPC. اقرأ [استعمال tRPC](https://create.t3.gg/ar/usage/trpc#-servertrpccontextts) للمزيد من المعلومات.
+1. يحدد المحتوى المستخدم في طلبات tRPC. اقرأ [استعمال tRPC](https://create.t3.gg/ar/usage/trpc#-serverapitrpcts) للمزيد من المعلومات.
 
-2. يورد (export) نهج الوطيفة المساعدة. اقرأ [استعمال tRPC](https://create.t3.gg/ar/usage/trpc#-servertrpctrpcts) للمزيد من المعلومات.
+2. يورد (export) نهج الوطيفة المساعدة. اقرأ [استعمال tRPC](https://create.t3.gg/ar/usage/trpc#-serverapitrpcts) للمزيد من المعلومات.
 
 </div>
 <div data-components="trpc">
 
 #### `src/server/api/root.ts`
 
-يُستخدم ملف `root.ts` لدمج وظائف tRPC للوصول, وتوريدهم كوظيفة وصول واحدة، وكذلك أنواع بيانات الوظيفة المحددة، اقرأ المزيد هنا [tRPC usage](https://create.t3.gg/ar/usage/trpc#-servertrpcrouterts).
+يُستخدم ملف `root.ts` لدمج وظائف tRPC للوصول, وتوريدهم كوظيفة وصول واحدة، وكذلك أنواع بيانات الوظيفة المحددة، اقرأ المزيد هنا [tRPC usage](https://create.t3.gg/ar/usage/trpc#-serverapirootts).
 
 </div>
 
@@ -176,9 +177,9 @@ import Diagram from "../../components/docs/folderStructureDiagram.astro";
 </div>
 <div>
 
-### `.eslintrc.json`
+### `.eslintrc.cjs`
 
-يٌستخدم ملف `.eslintrc.json` لإعداد ESLint، اقرأ المزيد هنا [ESLint Docs](https://eslint.org/docs/latest/user-guide/configuring/configuration-files).
+يٌستخدم ملف `.eslintrc.cjs` لإعداد ESLint، اقرأ المزيد هنا [ESLint Docs](https://eslint.org/docs/latest/user-guide/configuring/configuration-files).
 
 </div>
 <div>
@@ -204,9 +205,9 @@ import Diagram from "../../components/docs/folderStructureDiagram.astro";
 </div>
 <div data-components="tailwind">
 
-### `prettier.config.cjs`
+### `prettier.config.mjs`
 
-إن ملف `prettier.config.cjs` ضروري عند استخدام  Prettier ولإضافة prettier-plugin-tailwindcss لتنظيم الفئات (classes) مع Tailwind CSS، لمزيد من المعلومات [Tailwind CSS blog post](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier).
+إن ملف `prettier.config.mjs` ضروري عند استخدام Prettier ولإضافة prettier-plugin-tailwindcss لتنظيم الفئات (classes) مع Tailwind CSS، لمزيد من المعلومات [Tailwind CSS blog post](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier).
 
 </div>
 <div>

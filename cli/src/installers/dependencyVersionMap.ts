@@ -4,27 +4,34 @@
  */
 export const dependencyVersionMap = {
   // NextAuth.js
-  "next-auth": "^4.18.7",
-  "@next-auth/prisma-adapter": "^1.0.5",
+  "next-auth": "^4.23.0",
+  "@next-auth/prisma-adapter": "^1.0.7",
+  "@auth/drizzle-adapter": "^0.3.2",
 
   // Prisma
-  prisma: "^4.8.0",
-  "@prisma/client": "^4.8.0",
+  prisma: "^5.1.1",
+  "@prisma/client": "^5.1.1",
+
+  // Drizzle
+  "drizzle-orm": "^0.28.5",
+  "drizzle-kit": "^0.19.13",
+  "dotenv-cli": "^7.3.0",
+  mysql2: "^3.6.1",
+  "@planetscale/database": "^1.11.0",
 
   // TailwindCSS
-  tailwindcss: "^3.2.0",
-  autoprefixer: "^10.4.7",
-  postcss: "^8.4.14",
-  prettier: "^2.8.1",
-  "prettier-plugin-tailwindcss": "^0.2.1",
-  "@types/prettier": "^2.7.2",
+  tailwindcss: "^3.3.3",
+  autoprefixer: "^10.4.14",
+  postcss: "^8.4.27",
+  prettier: "^3.0.0",
+  "prettier-plugin-tailwindcss": "^0.5.1",
 
   // tRPC
-  "@trpc/client": "^10.8.1",
-  "@trpc/server": "^10.8.1",
-  "@trpc/react-query": "^10.8.1",
-  "@trpc/next": "^10.8.1",
-  "@tanstack/react-query": "^4.20.0",
-  superjson: "1.9.1",
+  "@trpc/client": "^10.37.1",
+  "@trpc/server": "^10.37.1",
+  "@trpc/react-query": "^10.37.1",
+  "@trpc/next": "^10.37.1",
+  "@tanstack/react-query": "^4.32.6",
+  superjson: "^1.13.1",
 } as const;
 export type AvailableDependencies = keyof typeof dependencyVersionMap;
